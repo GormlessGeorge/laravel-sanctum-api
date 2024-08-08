@@ -10,11 +10,13 @@ use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorize('viewAny', Task::class);
         return TaskResource::collection(Task::all());
     }
 
@@ -36,7 +38,7 @@ class TaskController extends Controller
         return TaskResource::make($task);
     }
 
-   
+
     /**
      * Update the specified resource in storage.
      */
